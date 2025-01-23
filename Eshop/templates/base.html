@@ -11,30 +11,31 @@
 	<script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
 	<!-- Bootstrap 4 JS -->
 	<script type="text/javascript" src="{% static 'bs4/bootstrap.min.js' %}"></script>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
 		<div class="container">
-		  <a class="navbar-brand" href="<?php echo $baseUrl; ?>">Bottle Shop</a>
+		  <a class="navbar-brand" href="#">Bottle Shop</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
 		  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav ml-auto">
 		      <li class="nav-item">
-		        <a class="nav-link text-white" href="<?php echo $baseUrl; ?>">Home</a>
+		        <a class="nav-link text-white" href="{% url 'homePage' %}">Home</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link text-white" href="<?php echo $baseUrl; ?>/categories.php">Categories</a>
+		        <a class="nav-link text-white" href="{% url 'category_listPage' %}">Categories</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link text-white" href="<?php echo $baseUrl; ?>/brands.php">Brands</a>
+		        <a class="nav-link text-white" href="{% url 'brand_listPage' %}">Brands</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link text-white" href="<?php echo $baseUrl; ?>/cart.php"><i class="fa fa-shopping-cart"></i> Cart (2)</a>
+		        <a class="nav-link text-white" href="#"><i class="fa fa-shopping-cart"></i> Cart (2)</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link text-white" href="<?php echo $baseUrl; ?>/account.php"><i class="fa fa-user"></i> My Account</a>
+		        <a class="nav-link text-white" href="#"><i class="fa fa-user"></i> My Account</a>
 		      </li>
 		    </ul>
 		  </div>
@@ -42,7 +43,7 @@
 	</nav>
 
     {% block content %}
-    
+
     {% endblock %}
 
 
