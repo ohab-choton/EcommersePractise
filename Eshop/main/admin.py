@@ -20,13 +20,14 @@ admin.site.register(Color,ColorAdmin)
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id','title','brand', 'color', 'category','status','image_tag','is_featured')
+    list_display = ('id','title','brand', 'color', 'category','status','is_featured')
     list_editable=('status','is_featured',)
+    search_fields = ('brand__title',)
 admin.site.register(Product,ProductAdmin)
 
 
 class ProductAttributeAdmin(admin.ModelAdmin):
-    list_display = ('id','product','price','size','color')
+    list_display = ('id','image_tag','product','price','size','color')
 admin.site.register(ProductAttribute,ProductAttributeAdmin)
 
 

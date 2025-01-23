@@ -43,7 +43,7 @@
 		
 		<div class="col-md-3 mb-4">
 			<div class="card shadow">
-			  <a href="{% url 'product_detailPage' featured.slug featured.id %}"><img src="/media/{{featured.image}}" class="card-img-top" alt="{{featured.title}}"></a>
+			  <a href="{% url 'product_detailPage' featured.slug featured.id %}"><img src="/media/{{featured.productattribute_set.first.image }}" class="card-img-top" alt="{{featured.title}}"></a>
 			  <div class="card-body">
 			    <h6 class="card-text"><a href="{% url 'product_detailPage' featured.slug featured.id %}">{{featured.title}} </a></h6>
 			  </div>

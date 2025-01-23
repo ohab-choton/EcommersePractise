@@ -67,9 +67,10 @@
                 {% for product in products %}
 				<div class="col-md-4 mb-4">
 					<div class="card shadow">
-					  <a href="/product/{{product.slug}}/{{product.id}}">
+					  <a href="{% url 'product_detailPage' product.slug product.id %}">
 						<!-- Add the 'img-fluid' class to make the image responsive -->
-						<img src="/media/{{product.image}}" class="card-img-top img-fluid" alt="{{product.title}}">
+						 <!-- for reverse relation ship used : productattribute_set-->
+						<img src="/media/{{product.productattribute_set.first.image}}" class="card-img-top img-fluid" alt="{{product.title}}">
 					  </a>
 					  <div class="card-body">
 						<h5 class="card-text"><a href="/product/{{product.slug}}/{{product.id}}"> {{product.title}}</a></h5>

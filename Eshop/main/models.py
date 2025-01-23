@@ -15,23 +15,31 @@ class Baner(models.Model):
 
 class Category(models.Model):
     title=models.CharField(max_length=100)
-    image=models.ImageField(upload_to='categeries/' )
+    image=models.ImageField(upload_to='categeries/',null=True,blank=True) 
     class Meta:
         verbose_name_plural='2. Categories'
 
     def image_tag(self):
-        return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
+        if self.image:
+            return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
+        return 'No Image Found'
+
+        
     def __str__(self):
         return self.title
     
 class Brand(models.Model):
     title=models.CharField(max_length=100)
-    image=models.ImageField(upload_to='brands/' )
+    image=models.ImageField(upload_to='brands/',null=True,blank=True) 
     class Meta:
         verbose_name_plural='3. Brands'
 
     def image_tag(self):
-            return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
+            if self.image:
+                return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
+            return 'No Image Found'
+           
+    
     def __str__(self):
         return self.title
     
@@ -55,7 +63,6 @@ class Size(models.Model):
     
 class Product(models.Model):
     title=models.CharField(max_length=100)
-    image=models.ImageField(upload_to='products/' )
     slug=models.SlugField(max_length=100)
     details=models.TextField()
     spec=models.TextField()
@@ -69,8 +76,8 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural='6. Products'
 
-    def image_tag(self):
-            return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
+   # def image_tag(self):
+          #  return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
 
     def __str__(self):
         return self.title
@@ -81,11 +88,18 @@ class ProductAttribute(models.Model):
     color=models.ForeignKey(Color,on_delete=models.CASCADE)
     size=models.ForeignKey(Size,on_delete=models.CASCADE, null=True, blank=True)
     price=models.PositiveIntegerField()
+    image=models.ImageField(upload_to='products/',null=True)
     class Meta:
         verbose_name_plural='7. ProductAttributes'
+        unique_together = ('product', 'color', 'size')
 
     def __str__(self):
         return self.product.title
+    
+    def image_tag(self):
+            if self.image:
+                return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
+            return 'No Image Found'
     
 
     
