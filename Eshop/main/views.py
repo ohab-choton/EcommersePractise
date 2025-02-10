@@ -81,7 +81,7 @@ def search(request):
 
 
 def filter_data(request):
-    colors = request.GET.getlist('color[]')
+    colors = request.GET.getlist('color[]') # 'color[] if came from filter.html , similar rest of category , brand size
     categories = request.GET.getlist('category[]')
     brands = request.GET.getlist('brand[]')
     sizes = request.GET.getlist('size[]')
@@ -89,7 +89,7 @@ def filter_data(request):
     allproducts = Product.objects.all()
 
     # Apply filters if selected
-    if colors:
+    if len(colors)>0:
         allproducts = allproducts.filter(productattribute__color__id__in=colors).distinct()
     if categories:
         allproducts = allproducts.filter(category__id__in=categories).distinct()

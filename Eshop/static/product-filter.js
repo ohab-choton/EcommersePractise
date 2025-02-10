@@ -1,12 +1,17 @@
 $(document).ready(function () {
     $(".ajx-loader").hide();
+    
     $(".filter-checkbox").on('click', function () {
         var _filterObj = {};
-        $(".filter-checkbox").each(function () {
-            var _filterKey = $(this).data('filter');
-            _filterObj[_filterKey] = Array.from(document.querySelectorAll('input[data-filter=' + _filterKey + ']:checked')).map(function (el) {
-                return el.value;
-            });
+
+        $(".filter-checkbox:checked").each(function () {
+            var _filterKey = $(this).data('filter');  // Get filter type (color, category, etc.)
+            
+            if (!_filterObj[_filterKey]) {
+                _filterObj[_filterKey] = [];  // Initialize as an array
+            }
+            
+            _filterObj[_filterKey].push($(this).val()); // Add selected values
         });
 
         $.ajax({
@@ -23,5 +28,4 @@ $(document).ready(function () {
             }
         });
     });
-    
 });

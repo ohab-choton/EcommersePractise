@@ -1,5 +1,7 @@
 {% load static %}
-<script type="text/javascript" src="{% static 'product-filter.js' %}"> </script>
+<script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
+<!-- Now load the product filter script -->
+<script type="text/javascript" src="{% static 'product-filter.js' %}"></script>
 
 <h3 class="mb-4 border-bottom pb-1">Filters</h3>
 <!-- Price Filter -->
@@ -24,7 +26,7 @@
 				<div class="list-group list-group-flush">
 					{% for c in clr %}
 					<li class="list-group-item">
-						<input class="filter-checkbox" data-filter="color" value="{{c.color__id}}" type="checkbox" />&nbsp;
+						<input class="filter-checkbox" data-filter="color" name="color[]"  value="{{c.color__id}}" type="checkbox" />&nbsp;
 						<button class="btn" style="background-color: {{ c.color__color_code }} "></button>
 					</li>
 				{% endfor %}
@@ -36,7 +38,7 @@
 				<div class="list-group list-group-flush">
                     {% for cat in cats %}
 					<li class="list-group-item">
-						<input value="{{cat.category__id}}" type="checkbox" />&nbsp;
+						<input class="filter-checkbox" name="category[]" data-filter="category" value="{{cat.category__id}}"  type="checkbox" />&nbsp;
 						{{cat.category__title}}
 					</li>
                     {% endfor %}
@@ -48,7 +50,7 @@
 				<div class="list-group list-group-flush">
                     {% for brand in brands %}
 					<li class="list-group-item">
-						<input value="{{brand.brand__id}}" type="checkbox" />&nbsp;
+						<input class="filter-checkbox" value="{{brand.brand__id}}" data-filter="brand" name="brand[]" type="checkbox" />&nbsp;
 						{{brand.brand__title}}
 					</li>
                     {% endfor %}
@@ -61,10 +63,12 @@
 				<div class="list-group list-group-flush">
 					 {% for size in sizeset %}
 					<li class="list-group-item">
-						<input value="{{size.size__id}}" type="checkbox" />&nbsp;
+						<input class="filter-checkbox"  name="size[]" data-filter="size" value="{{size.size__id}}" type="checkbox" />&nbsp;
 						{{size.size__title}}
 					</li>
                     {% endfor %}
 				</div>
 			</div>
+
+			
 		
